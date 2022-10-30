@@ -1,1 +1,31 @@
-<p>filters works!</p>
+{{current_filter}}
+{{current_launch_filter}}
+<div class="row">
+  <div class="col-6">
+    <div class="dropdown dropdown-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <fa-icon [icon]="faCalendar"></fa-icon>
+        <span class="px-2">{{date_filter_map[current_filter]}}</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><button [ngClass]="{'active': current_filter == '3'}"class="dropdown-item" type="button" (click)="apply_date_filter('3')">Past 3 months</button></li>
+        <li><button [ngClass]="{'active': current_filter == '6'}"class="dropdown-item" type="button" (click)="apply_date_filter('6')">Past 6 months</button></li>
+        <li><button [ngClass]="{'active': current_filter == '12'}"class="dropdown-item" type="button" (click)="apply_date_filter('12')">Past Year</button></li>
+        <li><button [ngClass]="{'active': current_filter == 'all'}" class="dropdown-item" type="button" (click)="apply_date_filter('all')">All</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-6 text-end">
+    <div class="dropdown dropdown-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <fa-icon [icon]="faFilter"></fa-icon>
+        <span class="px-2">{{launch_filter_map[current_launch_filter]}}</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><button [ngClass]="{'active': current_launch_filter == 'all'}" class="dropdown-item" type="button" (click)="apply_launch_filter('all')">All Launches</button></li>
+        <li><button [ngClass]="{'active': current_launch_filter == 'success'}"class="dropdown-item" type="button" (click)="apply_launch_filter('success')">Successful Launches</button></li>
+        <li><button [ngClass]="{'active': current_launch_filter == 'failed'}"class="dropdown-item" type="button" (click)="apply_launch_filter('failed')">Failed Launches</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
