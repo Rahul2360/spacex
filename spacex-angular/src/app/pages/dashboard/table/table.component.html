@@ -28,8 +28,9 @@
                 <td>{{data.mission_name}}</td>
                 <td>{{data.rocket.second_stage.payloads[0].orbit}}</td>
                 <td>
-                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.success.foreground, 'background-color': launch_status_color.success.background}" *ngIf="data.launch_success">Success</span>
-                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.failed.foreground, 'background-color': launch_status_color.failed.background}" *ngIf="!data.launch_success">Failed</span>
+                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.success.foreground, 'background-color': launch_status_color.success.background}" *ngIf="data.launch_success == true">Success</span>
+                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.failed.foreground, 'background-color': launch_status_color.failed.background}" *ngIf="data.launch_success == false">Failed</span>
+                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.upcoming.foreground, 'background-color': launch_status_color.upcoming.background}" *ngIf="data.launch_success == null">Upcoming</span>
                 </td>
                 <td>{{data.rocket.rocket_name}}</td>
               </tr>

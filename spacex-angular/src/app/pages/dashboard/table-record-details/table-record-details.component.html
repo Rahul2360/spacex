@@ -36,10 +36,14 @@
             <div class="ps-2">
               <span class="launch-status"
                 [ngStyle]="{'color': launch_status_color.success.foreground, 'background-color': launch_status_color.success.background}"
-                *ngIf="launch_details?.launch_success">Success</span>
+                *ngIf="launch_details.launch_success == true">Success</span>
               <span class="launch-status"
                 [ngStyle]="{'color': launch_status_color.failed.foreground, 'background-color': launch_status_color.failed.background}"
-                *ngIf="!launch_details?.launch_success">Failed</span>
+                *ngIf="launch_details.launch_success == false">Failed</span>
+              <span class="launch-status"
+                [ngStyle]="{'color': launch_status_color.upcoming.foreground, 'background-color': launch_status_color.upcoming.background}"
+                *ngIf="launch_details.launch_success == null">Upcoming</span>
+
             </div>
           </div>
           <div class="col-12 my-4 description">
@@ -52,7 +56,7 @@
                   <td>{{rec.name}}</td>
                   <td>{{launch_details[rec.prop]}}</td>
                 </tr> -->
-                
+
                 <tr>
                   <td>Flight Number</td>
                   <td>{{launch_details?.flight_number}}</td>

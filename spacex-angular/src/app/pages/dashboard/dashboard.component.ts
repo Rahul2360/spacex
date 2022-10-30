@@ -16,12 +16,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.get_all_launches();
+    this.get_all_launches();
   }
 
   get_all_launches() {
     this.loadingIndicator = true;
-    const payload = {};
+    const payload = {
+    };
     this._commonService.get_all_launches(payload).subscribe(res => {
       this.loadingIndicator = false;
       this.launches_list = res;
