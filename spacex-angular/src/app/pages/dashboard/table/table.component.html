@@ -1,4 +1,3 @@
-<app-table-record-details></app-table-record-details>
 <div class="container mt-3">
   <div class="row">
     <div class="offset-1 col-10">
@@ -19,7 +18,8 @@
             </tr>
             <ng-container *ngIf="!loadingIndicator">
               <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index">
-                <td>{{i<9 ? '0'+(i+1): i+1}}</td>
+                <td>{{(i+currentPage*limit)<9 ? '0'+(i+1)  : (i+1)+(currentPage*limit)}}</td>
+
                 <td>{{data.launch_date_utc}}</td>
                 <td>{{data.launch_site.site_name}}</td>
                 <td>{{data.mission_name}}</td>
@@ -34,6 +34,7 @@
           </tbody>
         </table>
       </div>
+      <app-pagination [per_page_records]="limit" [total_records]="table_data.length" (pagination_event)="pagination_event($event)" ></app-pagination>
     </div>
   </div>
 </div>

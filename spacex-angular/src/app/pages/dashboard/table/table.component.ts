@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
 
   @Input() table_data: any[] = [];
   @Input() loadingIndicator: boolean = false;
-  @Input() limit: number = 10;
+  @Input() limit: number = 12;
 
   columns: Columns[] = [
     { prop: '', name: 'No.' },
@@ -41,6 +41,7 @@ export class TableComponent implements OnInit {
     }
   }
 
+  currentPage :number = 0;
   constructor(
     private spinner: NgxSpinnerService
   ) { }
@@ -59,6 +60,12 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  pagination_event(event:any) {
+    this.currentPage = event.page_number
+    this.start_index = event.page_number * this.limit;
+    this.end_index = event.page_number * this.limit + this.limit;
   }
 
 }

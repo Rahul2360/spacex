@@ -1,1 +1,64 @@
-<p>pagination works!</p>
+<div class="row my-3">
+  <div class="col-12 text-end">
+    <div class="pagination-block">
+      <button [ngClass]="{'cursor-not-allowed': page.pageNumber == 0 }" [disabled]="page.pageNumber == 0"
+        class="pagination-button start-page" (click)="setPage({offset:0})">
+        <fa-icon [icon]="faStepBackward"></fa-icon>
+      </button>
+      <button [ngClass]="{'cursor-not-allowed': page.pageNumber == 0 }" [disabled]="page.pageNumber == 0"
+        class="pagination-button" (click)="setPage({offset:page.pageNumber-1})">
+        <fa-icon [icon]="faAngleLeft"></fa-icon>
+      </button>
+
+      <button *ngIf="page.pageNumber >0" [ngClass]="{'current-page': page.pageNumber == page.pageNumber -1}"
+        [disabled]="page.pageNumber == page.pageNumber-1" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber -1})">
+        {{page.pageNumber}}
+      </button>
+      <button [ngClass]="{'current-page': page.pageNumber == page.pageNumber}"
+        [disabled]="page.pageNumber == page.pageNumber" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber})">
+        {{page.pageNumber +1}}
+      </button>
+      <button *ngIf="page.pageNumber < page.totalPages -1"
+        [ngClass]="{'current-page': page.pageNumber == page.pageNumber +1}"
+        [disabled]="page.pageNumber == page.pageNumber+1" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber+1})">
+        {{page.pageNumber + 2}}
+      </button>
+      <!-- <button *ngIf="page.pageNumber < page.totalPages -3"
+        [ngClass]="{'current-page': page.pageNumber == page.pageNumber}" [disabled]="page.pageNumber == 0"
+        class="pagination-button" (click)="setPage({offset:page.pageNumber})">
+        {{page.pageNumber + 1}}
+      </button>
+      <button *ngIf="page.pageNumber < page.totalPages -2"
+        [ngClass]="{'current-page': page.pageNumber == page.pageNumber + 1}" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber + 1})">
+        {{page.pageNumber + 2}}
+      </button>
+      <button *ngIf="page.pageNumber < page.totalPages -1" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber +1})">
+        ...
+      </button>
+      <button [ngClass]="{'current-page': page.pageNumber == page.totalPages -1}" class="pagination-button"
+        (click)="setPage({offset:page.totalPages -1})">
+        {{page.totalPages -1}}
+      </button>
+      <button [ngClass]="{'current-page': page.pageNumber == page.totalPages}" class="pagination-button"
+        (click)="setPage({offset:page.totalPages})">
+        {{page.totalPages}}
+      </button> -->
+      <button [ngClass]="{'cursor-not-allowed': (page.pageNumber == page.totalPages-1) }"
+        [disabled]="(page.pageNumber == page.totalPages-1)" class="pagination-button"
+        (click)="setPage({offset:page.pageNumber+1})">
+        <fa-icon [icon]="faAngleRight"></fa-icon>
+      </button>
+      <button [ngClass]="{'cursor-not-allowed': (page.pageNumber == page.totalPages-1) }"
+        [disabled]="(page.pageNumber == page.totalPages-1)" class="pagination-button end-page"
+        (click)="setPage({offset:page.totalPages-1})">
+        <fa-icon [icon]="faStepForward"></fa-icon>
+      </button>
+    </div>
+
+  </div>
+</div>

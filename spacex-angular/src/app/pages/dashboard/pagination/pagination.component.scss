@@ -1,0 +1,31 @@
+.pagination-button {
+    color: #676a6c;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid #e4e4e7;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+    color: #bbb;
+}
+
+.current-page {
+    background-color: #7b838f;
+    color: #f4f5f7;
+}
+
+.page-input {
+    display: inline-block;
+    width: 15px;
+}
+
+.start-page {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.end-page {
+    border-radius: 0px 10px 10px 0px;
+}

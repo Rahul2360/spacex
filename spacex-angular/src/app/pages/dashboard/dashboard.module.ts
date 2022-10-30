@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -16,14 +17,15 @@ import { FormsModule } from '@angular/forms';
     TableComponent,
     FiltersComponent,
     PaginationComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
     NgxSpinnerModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ]
 })
 export class DashboardModule { }
