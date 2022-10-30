@@ -36,6 +36,7 @@ export class PaginationComponent implements OnInit {
       this.page.totalPages = Math.ceil(this.total_records / this.per_page_records)
       this.page_num_list = Array(this.page.totalPages).fill(0).map((x, i) => i);
       this.page.totalElements = this.total_records;
+      this.page.pageNumber = 0;
     }
   }
 

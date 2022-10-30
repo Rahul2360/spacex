@@ -38,6 +38,9 @@ export class TableComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['loadingIndicator']) {
+      this.currentPage = 0
+      this.start_index = 0;
+      this.end_index = 0;
       if (changes['loadingIndicator'].currentValue) {
         this.spinner.show()
       } else {
