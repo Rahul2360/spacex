@@ -1,1 +1,35 @@
-<p>table works!</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="offset-1 col-10">
+      <div class="table-responsive card">
+        <table class="table mb-0">
+          <thead class="thead">
+            <tr>
+              <th *ngFor="let col of columns">
+                {{col.name}}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr *ngIf="loadingIndicator" style="position: relative">
+              <ngx-spinner bdColor="rgb(255,255,255)" size="medium" color="#7a7a7a" type="ball-spin-clockwise"
+                [fullScreen]="false">
+              </ngx-spinner>
+            </tr>
+            <ng-container *ngIf="!loadingIndicator">
+              <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index">
+                <td>{{i+1}}</td>
+                <td>{{data.launch_date_utc}}</td>
+                <td>{{data.launch_site.site_name}}</td>
+                <td>{{data.mission_name}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{data.rocket.rocket_name}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

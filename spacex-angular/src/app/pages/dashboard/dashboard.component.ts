@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  launches_list =[]
+  loadingIndicator: boolean = false;
+
+  constructor(
+    private _commonService: CommonService
+  ) { }
 
   ngOnInit(): void {
+    // this.get_all_launches();
+  }
+
+  get_all_launches() {
+    this.loadingIndicator = true;
+    const payload = {};
+    this._commonService.get_all_launches(payload).subscribe(res => {
+      this.loadingIndicator = false;
+      this.launches_list = res;
+    })
   }
 
 }
