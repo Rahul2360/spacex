@@ -1,0 +1,103 @@
+<!-- Modal -->
+<div class="modal fade" id="launch-details" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="launch-detailsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row px-3">
+          <div class="col-12 text-end pt-3">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="row px-3">
+          <div class="col-12 basic-details">
+            <div class="image">
+              <img src="{{launch_details?.links?.mission_patch_small}}" alt="">
+            </div>
+            <div class="rocket-details">
+              <div class="heading">
+                {{launch_details?.mission_name}}
+              </div>
+              <div class="rocket-name">
+                {{launch_details?.rocket?.rocket_name}}
+              </div>
+              <div class="links">
+                <a href="launch_details?.links?.">
+                  <fa-icon class="me-3 icon" [icon]="['fas', 'rocket']"></fa-icon>
+                </a>
+                <a href="launch_details?.links?.wikipedia">
+                  <fa-icon class="me-3 icon" [icon]="['fab', 'wikipedia-w']"></fa-icon>
+                </a>
+                <a href="launch_details?.links?.video_link">
+                  <fa-icon class="icon" [icon]="['fab', 'youtube']"></fa-icon>
+                </a>
+              </div>
+            </div>
+            <div class="ps-2">
+              <span class="launch-status"
+                [ngStyle]="{'color': launch_status_color.success.foreground, 'background-color': launch_status_color.success.background}"
+                *ngIf="launch_details?.launch_success">Success</span>
+              <span class="launch-status"
+                [ngStyle]="{'color': launch_status_color.failed.foreground, 'background-color': launch_status_color.failed.background}"
+                *ngIf="!launch_details?.launch_success">Failed</span>
+            </div>
+          </div>
+          <div class="col-12 my-4 description">
+            {{launch_details?.details}}
+          </div>
+          <div class="col-12">
+            <table class="table">
+              <tbody>
+                <!-- <tr *ngFor="let rec of record_details">
+                  <td>{{rec.name}}</td>
+                  <td>{{launch_details[rec.prop]}}</td>
+                </tr> -->
+                
+                <tr>
+                  <td>Flight Number</td>
+                  <td>{{launch_details?.flight_number}}</td>
+                </tr>
+                <tr>
+                  <td>Mission Name</td>
+                  <td>{{launch_details?.mission_name}}</td>
+                </tr>
+                <tr>
+                  <td>Rocket Type</td>
+                  <td>{{launch_details?.rocket?.rocket_type}}</td>
+                </tr>
+                <tr>
+                  <td>Rocket Name</td>
+                  <td>{{launch_details?.rocket?.rocket_name}}</td>
+                </tr>
+                <tr>
+                  <td>Manufacturer</td>
+                  <td>{{launch_details?.rocket?.second_stage?.payloads[0]?.manufacturer}}</td>
+                </tr>
+                <tr>
+                  <td>Nationality</td>
+                  <td>{{launch_details?.rocket?.second_stage?.payloads[0]?.nationality}}</td>
+                </tr>
+                <tr>
+                  <td>Launch Date</td>
+                  <td>{{launch_details?.launch_date_utc | date:'dd EEEE yyyy \'at\' hh:mm'}}</td>
+                </tr>
+                <tr>
+                  <td>Payload Type</td>
+                  <td>{{launch_details?.rocket?.second_stage?.payloads[0]?.payload_type}}</td>
+                </tr>
+                <tr>
+                  <td>Orbit</td>
+                  <td>{{launch_details?.rocket?.second_stage?.payloads[0]?.orbit}}</td>
+                </tr>
+                <tr>
+                  <td>Launch Site</td>
+                  <td>{{launch_details?.launch_site?.site_name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

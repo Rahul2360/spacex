@@ -1,0 +1,35 @@
+td {
+    padding :0.8rem 0rem;
+}
+
+.basic-details {
+    display: flex;
+
+    .image > img {
+        height: 100px;
+    }
+
+    .description {
+        color: #000;
+    }
+
+    .rocket-details {
+        padding-left: 30px;
+    }
+
+    .heading {
+        font-size: 24px;
+    }
+
+    .rocket-name {
+        font-size: 20px;
+        color: #767676;
+    }
+
+    .links {
+        .icon {
+            font-size: 20px;
+            color: #4e4e4e;
+        }
+    }
+}

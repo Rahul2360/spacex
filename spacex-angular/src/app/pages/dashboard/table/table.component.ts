@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { launch_status_color } from '../const';
 interface Columns {
   prop: string;
   name: string;
@@ -26,22 +27,11 @@ export class TableComponent implements OnInit {
   ]
   start_index = 0;
   end_index = 0;
-  launch_status_color = {
-    'success': {
-      foreground: '#03543f',
-      background: '#def7ec'
-    },
-    'upcoming': {
-      foreground: '#92400f',
-      background: '#fef3c7'
-    },
-    'failed': {
-      foreground: '#981b1c',
-      background: '#fde2e1'
-    }
-  }
+  launch_status_color = launch_status_color;
 
-  currentPage :number = 0;
+  currentPage: number = 0;
+  selected_row: any = {};
+
   constructor(
     private spinner: NgxSpinnerService
   ) { }
@@ -62,10 +52,14 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  pagination_event(event:any) {
+  pagination_event(event: any) {
     this.currentPage = event.page_number
     this.start_index = event.page_number * this.limit;
     this.end_index = event.page_number * this.limit + this.limit;
+  }
+
+  view_details(index: number) {
+    this.selected_row = this.table_data[index];
   }
 
 }

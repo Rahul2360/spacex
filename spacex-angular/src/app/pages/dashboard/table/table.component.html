@@ -5,7 +5,7 @@
         <app-filters></app-filters>
       </div>
       <div class="table-responsive card">
-        <table class="table mb-0">
+        <table class="table table-hover mb-0">
           <thead class="thead">
             <tr>
               <th *ngFor="let col of columns">
@@ -20,7 +20,7 @@
               </ngx-spinner>
             </tr>
             <ng-container *ngIf="!loadingIndicator">
-              <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index">
+              <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index" (dblclick)="view_details(i)">
                 <td>{{(i+currentPage*limit)<9 ? '0'+(i+1)  : (i+1)+(currentPage*limit)}}</td>
 
                 <td>{{data.launch_date_utc | date:'dd EEEE yyyy \'at\' hh:mm'}}</td>
@@ -41,3 +41,4 @@
     </div>
   </div>
 </div>
+<app-table-record-details [launch_details]="selected_row"></app-table-record-details>

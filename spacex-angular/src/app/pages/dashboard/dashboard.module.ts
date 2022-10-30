@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TableRecordDetailsComponent } from './table-record-details/table-record-details.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FiltersComponent,
     PaginationComponent,
     DashboardComponent,
+    TableRecordDetailsComponent
   ],
   imports: [
     CommonModule,
