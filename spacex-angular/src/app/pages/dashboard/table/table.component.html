@@ -13,7 +13,7 @@
               </th>
             </tr>
           </thead>
-          <tbody [ngClass]="{'tbody':loadingIndicator}">
+          <tbody [ngClass]="{'tbody':loadingIndicator || (!loadingIndicator && !table_data.length)}">
             <tr *ngIf="loadingIndicator" style="position: relative">
               <ngx-spinner bdColor="rgb(255,255,255)" size="medium" color="#7a7a7a" type="ball-spin-clockwise"
                 [fullScreen]="false">
