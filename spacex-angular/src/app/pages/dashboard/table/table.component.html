@@ -19,7 +19,7 @@
                 [fullScreen]="false">
               </ngx-spinner>
             </tr>
-            <ng-container *ngIf="!loadingIndicator">
+            <ng-container *ngIf="!loadingIndicator && table_data.length">
               <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index" (dblclick)="view_details(i)">
                 <td>{{(i+currentPage*limit)<9 ? '0'+(i+1)  : (i+1)+(currentPage*limit)}}</td>
 
@@ -33,6 +33,13 @@
                   <span class="launch-status" [ngStyle]="{'color': launch_status_color.upcoming.foreground, 'background-color': launch_status_color.upcoming.background}" *ngIf="data.launch_success == null">Upcoming</span>
                 </td>
                 <td>{{data.rocket.rocket_name}}</td>
+              </tr>
+            </ng-container>
+            <ng-container *ngIf="!loadingIndicator && !table_data.length">
+              <tr>
+                <td [attr.colspan]="columns.length" class="text-center pt-5">
+                  <span>No results found for the specified  filter</span>
+                </td>
               </tr>
             </ng-container>
           </tbody>
