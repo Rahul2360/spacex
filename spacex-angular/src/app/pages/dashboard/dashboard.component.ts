@@ -11,7 +11,11 @@ export class DashboardComponent implements OnInit {
 
   launches_list = [];
   loadingIndicator: boolean = false;
-  filter_present: boolean = false;
+
+  launch_filter_map: any = {
+    'success': true,
+    'failed': false,
+  }
   constructor(
     private _commonService: CommonService,
     private _activatedRoute: ActivatedRoute
@@ -19,9 +23,10 @@ export class DashboardComponent implements OnInit {
   ) {
     this._activatedRoute.queryParams.subscribe(res => {
       console.log(res);
-      this.filter_present = false;
+      if(Object.keys(res).length == 0) {
+        this.get_all_launches({});
+      }
       if (res['date_filter'] && res['launch_filter'] == undefined) {
-        this.filter_present = true;
         const payload = {
           start: res['start_date'],
           end: res['end_date']
@@ -29,16 +34,14 @@ export class DashboardComponent implements OnInit {
         this.get_all_launches(payload);
       }
       if (res['launch_filter'] && res['date_filter'] == undefined) {
-        this.filter_present = true;
         const payload = {
-          launch_success: res['launch_filter'],
+          launch_success: this.launch_filter_map[res['launch_filter']]
         }
         this.get_all_launches(payload);
       }
       if (res['launch_filter'] && res['date_filter']) {
-        this.filter_present = true;
         const payload = {
-          launch_success: false,
+          launch_success: this.launch_filter_map[res['launch_filter']],
           start: res['start_date'],
           end: res['end_date']
         }
@@ -48,9 +51,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.filter_present) {
-      this.get_all_launches({});
-    }
   }
 
   get_all_launches(payload: any) {

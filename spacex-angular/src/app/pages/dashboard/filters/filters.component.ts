@@ -30,10 +30,18 @@ export class FiltersComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
     this._activatedRoute.queryParams.subscribe(res => {
-      console.log(res)
       this.current_filter = 'all';
-      if (res['date_filter']) {
+      this.current_launch_filter = 'all';
+      if (res['date_filter'] && res['launch_filter'] == undefined) {
         this.current_filter = res['date_filter'];
+      }
+      if (res['launch_filter'] && res['date_filter'] == undefined) {
+        this.current_launch_filter = res['launch_filter'];
+      }
+      if (res['launch_filter'] && res['date_filter']) {
+        this.current_launch_filter = res['launch_filter'];
+        this.current_filter = res['date_filter'];
+      
       }
     })
   }
