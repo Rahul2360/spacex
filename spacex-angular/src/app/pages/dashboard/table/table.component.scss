@@ -8,9 +8,16 @@
 }
 
 .tbody {
-    height: 70vh;
+    height: 60vh;
 }
-th {
+
+th,
+td {
     padding: 1rem;
     color: #4b5563;
+}
+
+.launch-status {
+    padding: 5px 15px;
+    border-radius: 20px;
 }

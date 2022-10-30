@@ -1,3 +1,4 @@
+<app-table-record-details></app-table-record-details>
 <div class="container mt-3">
   <div class="row">
     <div class="offset-1 col-10">
@@ -18,12 +19,15 @@
             </tr>
             <ng-container *ngIf="!loadingIndicator">
               <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index">
-                <td>{{i+1}}</td>
+                <td>{{i<9 ? '0'+(i+1): i+1}}</td>
                 <td>{{data.launch_date_utc}}</td>
                 <td>{{data.launch_site.site_name}}</td>
                 <td>{{data.mission_name}}</td>
-                <td>-</td>
-                <td>-</td>
+                <td>{{data.rocket.second_stage.payloads[0].orbit}}</td>
+                <td>
+                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.success.foreground, 'background-color': launch_status_color.success.background}" *ngIf="data.launch_success">Success</span>
+                  <span class="launch-status" [ngStyle]="{'color': launch_status_color.failed.foreground, 'background-color': launch_status_color.failed.background}" *ngIf="!data.launch_success">Failed</span>
+                </td>
                 <td>{{data.rocket.rocket_name}}</td>
               </tr>
             </ng-container>
