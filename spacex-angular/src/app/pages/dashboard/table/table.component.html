@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-4">
   <div class="row">
     <div class="offset-1 col-10">
       <div class="table-responsive card">
@@ -20,7 +20,7 @@
               <tr *ngFor="let data of table_data.slice(start_index,end_index);let i =index">
                 <td>{{(i+currentPage*limit)<9 ? '0'+(i+1)  : (i+1)+(currentPage*limit)}}</td>
 
-                <td>{{data.launch_date_utc}}</td>
+                <td>{{data.launch_date_utc | date:'dd EEEE yyyy \'at\' hh:mm'}}</td>
                 <td>{{data.launch_site.site_name}}</td>
                 <td>{{data.mission_name}}</td>
                 <td>{{data.rocket.second_stage.payloads[0].orbit}}</td>
