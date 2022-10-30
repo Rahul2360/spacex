@@ -21,6 +21,7 @@
       </button>
       <ul class="dropdown-menu">
         <li><button [ngClass]="{'active': current_launch_filter == 'all'}" class="dropdown-item" type="button" (click)="apply_launch_filter('all')">All Launches</button></li>
+        <li><button [ngClass]="{'active': current_launch_filter == 'upcoming'}" class="dropdown-item" type="button" (click)="apply_launch_filter('upcoming')">Upcoming Launches</button></li>
         <li><button [ngClass]="{'active': current_launch_filter == 'success'}"class="dropdown-item" type="button" (click)="apply_launch_filter('success')">Successful Launches</button></li>
         <li><button [ngClass]="{'active': current_launch_filter == 'failed'}"class="dropdown-item" type="button" (click)="apply_launch_filter('failed')">Failed Launches</button></li>
       </ul>

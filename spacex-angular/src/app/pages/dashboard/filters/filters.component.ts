@@ -20,6 +20,7 @@ export class FiltersComponent implements OnInit {
   }
   launch_filter_map: any = {
     'all': 'All Launches',
+    'upcoming': 'Upcoming Launches',
     'success': 'Successful Launches',
     'failed': 'Failed Launches',
   }
@@ -41,7 +42,7 @@ export class FiltersComponent implements OnInit {
       if (res['launch_filter'] && res['date_filter']) {
         this.current_launch_filter = res['launch_filter'];
         this.current_filter = res['date_filter'];
-      
+
       }
     })
   }
@@ -68,6 +69,15 @@ export class FiltersComponent implements OnInit {
         );
         break;
       case 'failed':
+        this._router.navigate(
+          ['/dashboard'],
+          {
+            queryParams: { launch_filter: this.current_launch_filter },
+            queryParamsHandling: 'merge',
+          }
+        );
+        break;
+      case 'upcoming':
         this._router.navigate(
           ['/dashboard'],
           {

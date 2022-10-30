@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   launch_filter_map: any = {
     'success': true,
     'failed': false,
+    'upcoming': null
   }
   constructor(
     private _commonService: CommonService,
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this._activatedRoute.queryParams.subscribe(res => {
       console.log(res);
-      if(Object.keys(res).length == 0) {
+      if (Object.keys(res).length == 0) {
         this.get_all_launches({});
       }
       if (res['date_filter'] && res['launch_filter'] == undefined) {
@@ -37,7 +38,11 @@ export class DashboardComponent implements OnInit {
         const payload = {
           launch_success: this.launch_filter_map[res['launch_filter']]
         }
-        this.get_all_launches(payload);
+        if (this.launch_filter_map[res['launch_filter']] == null) {
+          this.get_upcoming_launches({})
+        } else {
+          this.get_all_launches(payload);
+        }
       }
       if (res['launch_filter'] && res['date_filter']) {
         const payload = {
@@ -61,4 +66,11 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  get_upcoming_launches(payload: any) {
+    this.loadingIndicator = true;
+    this._commonService.get_upcoming_launches(payload).subscribe(res => {
+      this.loadingIndicator = false;
+      this.launches_list = res;
+    })
+  }
 }
